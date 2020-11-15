@@ -2,14 +2,17 @@ name: dc foo
 
 on:
   push:
-    branches: [ master ]
 
 jobs:
+  strategy:
+    max-parallel: 3
+    matrix:
+      number: [0, 1, 2]
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build the stack
+      - name: deps
         run: docker-compose up -d
       - name: Test
-        run: docker-compose run --rm web rspec
+        run: RUNNER={{matrix.number}} docker-compose run --rm web rspec
