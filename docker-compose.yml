@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  web:
+    build: .
+    ports:
+      - "8765:8765"
+    volumes:
+       - .:/home/app-user/
+    depends_on:
+      - redis
+  redis:
+    image: "redis:alpine"
