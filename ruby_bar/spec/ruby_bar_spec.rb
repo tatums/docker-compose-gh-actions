@@ -8,7 +8,7 @@ RSpec.describe RubyBar do
     key = "test-runner-#{ENV["RUNNER"]}"
     puts "key: #{key}"
 
-    puts "keys: #{Redis.current.keys.join(", ")}"
+    puts "keys: #{RubyBar.all_keys.join(", ")}"
     RubyBar.set(key, "b")
     value = RubyBar.get(key)
     expect(value).to eq("b")
