@@ -13,4 +13,8 @@ module RubyBar
   def self.get(key)
     $redis.get(key)
   end
+
+  def self.all_keys
+    $redis.keys
+  end
 end
